@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <ul class="list-group">
+            {% for task in tasks %}
+                <li class="list-group-item{% if task.completed %} list-group-item-secondary text-decoration-line-through{% endif %}">
+                    {{ task.title }}
+                    <a class="btn btn-sm btn-success" href="{% url 'complete_task' task.id %}">Complete</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-primary mt-3" href="{% url 'add_task' %}">Add Task</a>
+    </div>
+    <!-- Add Bootstrap JS and jQuery (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optionally, you can add jQuery if required by Bootstrap components -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+</body>
+</html>
